@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
@@ -181,7 +181,7 @@ const config: Config = {
       {
         jsc: {
           parser: {
-            syntax: 'typescript',
+            syntax: "typescript",
             tsx: true,
             decorators: true,
           },
@@ -190,12 +190,12 @@ const config: Config = {
             legacyDecorator: true,
             decoratorMetadata: true,
             react: {
-              runtime: 'automatic'
+              runtime: "automatic",
             },
           },
         },
         module: {
-          type: 'es6',
+          type: "es6",
           noInterop: false,
         },
       },
