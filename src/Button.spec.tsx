@@ -5,7 +5,7 @@ import { Button } from "./Button";
 describe("Button Component", () => {
   it("should render with red background ir disabled", () => {
     render(
-      <Button onclick={() => {}} disabled>
+      <Button onClick={() => {}} disabled>
         Click me
       </Button>,
     );

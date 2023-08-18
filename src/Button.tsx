@@ -12,7 +12,7 @@ export const Button = ({
   return (
     <button
       onClick={onClick}
-      style={{ backgroundColor: disabled ? "red" : "blue" }}
+      style={{ backgroundColor: disabled ? "red" : "blue", color: "white" }}
     >
       {children}
     </button>
