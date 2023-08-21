@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Tasks } from "./Tasks.tsx";
+import { App } from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Tasks />
+    <App />
   </React.StrictMode>,
 );
