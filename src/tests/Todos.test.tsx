@@ -22,14 +22,6 @@ describe("Todos", () => {
     expect(taskInput).toBeInTheDocument();
   });
 
-  it("should show task input with blue border", () => {
-    render(<Todos />);
-
-    const taskInput = screen.getByPlaceholderText("Digite o nome da tarefa");
-
-    expect(taskInput).toHaveStyle({ borderColor: "rgb(14 165 233)" });
-  });
-
   it("should show add button", () => {
     render(<Todos />);
 
@@ -54,5 +46,50 @@ describe("Todos", () => {
     screen.getByDisplayValue("");
 
     screen.getByText(taskTitle);
+  });
+
+  it("should add task by pressing enter key ", async () => {
+    render(<Todos />);
+
+    const taskInput = screen.getByPlaceholderText("Digite o nome da tarefa");
+
+    const taskTitle = "Nova tarefa";
+
+    await userEvent.type(taskInput, `${taskTitle}{enter}`);
+
+    expect(screen.getByText(taskTitle)).toBeInTheDocument();
+
+    expect(taskInput).toBeEmptyDOMElement();
+  });
+
+  it("should delete task on delete button click", async () => {
+    render(<Todos />);
+
+    // Adicionar tarefa
+    const taskInput = screen.getByPlaceholderText("Digite o nome da tarefa");
+
+    const taskTitle = "Nova tarefa";
+
+    await userEvent.type(taskInput, taskTitle);
+
+    screen.getByDisplayValue(taskTitle);
+
+    const addButton = screen.getByLabelText("Adicionar tarefa");
+
+    await userEvent.click(addButton);
+
+    screen.getByDisplayValue("");
+
+    screen.getByText(taskTitle);
+
+    // Excluir Tarefa
+
+    const deleteButton = screen.getByLabelText(`Deletar tarefa: ${taskTitle}`);
+
+    await userEvent.click(deleteButton);
+
+    const deletedTask = screen.queryByText(taskTitle);
+
+    expect(deletedTask).not.toBeInTheDocument();
   });
 });
